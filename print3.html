@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ticket A8</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    #ticket {
+      width: 47mm; /* un poco menos que 52mm para márgenes */
+      margin: auto;
+      padding: 4mm;
+      border: 1px dashed #000;
+      background-color: #fff;
+      display: none;
+      font-size: 10px;
+      line-height: 1.2;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .separator {
+      border-top: 1px dashed #000;
+      margin: 4px 0;
+    }
+
+    @media print {
+      @page {
+        size: 52mm 74mm;
+        margin: 0;
+      }
+
+      body * {
+        visibility: hidden;
+      }
+
+      #ticket, #ticket * {
+        visibility: visible;
+      }
+
+      #ticket {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="font-size: 14px;">Simulador Ticket A8</h2>
+  <button onclick="imprimirTicket()">Imprimir Ticket</button>
+
+  <div id="ticket">
+    <div class="center">
+      <strong>CAFETERÍA EL BUEN SABOR</strong><br>
+      Av. Siempre Viva #123<br>
+      RFC: BUE123456789<br>
+    </div>
+
+    <div class="separator"></div>
+
+    <div>
+      <p>Ticket #00123</p>
+      <p>24/04/2025 - 14:30</p>
+    </div>
+
+    <div class="separator"></div>
+
+    <div>
+      <p>1x Café Americano ..... $35</p>
+      <p>2x Pan dulce .......... $30</p>
+    </div>
+
+    <div class="separator"></div>
+
+    <div>
+      <p><strong>Total: .............. $65</strong></p>
+      <p>Efectivo: ............. $70</p>
+      <p>Cambio: ............... $5</p>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="center">
+      ¡Gracias por su compra!<br>
+      Vuelva pronto.
+    </div>
+  </div>
+
+  <script>
+    function imprimirTicket() {
+      const ticket = document.getElementById('ticket');
+      ticket.style.display = 'block';
+
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+          //ticket.style.display = 'none';
+        }, 1000);
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>
